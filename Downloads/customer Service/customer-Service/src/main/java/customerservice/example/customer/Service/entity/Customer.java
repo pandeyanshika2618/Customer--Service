@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @NoArgsConstructor
@@ -19,12 +20,27 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id ;
-    private String firstName ;
-    private String  lastName ;
-    private String email ;
-    private  String passWord ;
+    private UUID id;
+    @Column(name = "first_name")
+    private String firstName;
 
-    private String token ;
-    private LocalDateTime tokenExpiration ;
+    @Column(name = " last_name")
+    private String lastName;
+
+    @Column(name = " email")
+    private String email;
+
+    @Column(name = "password")
+    private String password;
+
+    @OneToOne(mappedBy = "customer")
+    private Address address;
+
+    @OneToMany(mappedBy = "customer")
+    private List<OrderHistory> orderHistory;
+
+    private String token;
+    private LocalDateTime tokenExpiration;
+
 }
+
