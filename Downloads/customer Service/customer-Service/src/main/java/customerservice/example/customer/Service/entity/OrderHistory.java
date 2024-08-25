@@ -29,14 +29,17 @@ public class OrderHistory {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy = "orderHistory")
-    private List<Product> product ;
+//    @OneToMany(mappedBy = "orderHistory")
+//    private List<Product> products ;
 
-    @OneToOne (mappedBy = "orderHistory")
-    private  Payment payemnt ;
-
-    @OneToOne (mappedBy =  "orderHistory")
-    private   Invoice invoice ;
-
+//    @OneToOne (mappedBy = "orderHistory")
+//    private  Payment payemnt ;
+//
+//    @OneToOne (mappedBy =  "orderHistory")
+//    private   Invoice invoice ;
+//
+//    @OneToOne
+//    @JoinColumn(name = "address_id")
+//    private Address address;
 
 }

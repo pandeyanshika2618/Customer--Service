@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -20,13 +21,21 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "amount")
+    @Column(name = "customer_id", nullable = false)
+    private UUID customerId;
+
+    @Column(name = "amount", nullable = false)
     private Double amount;
 
-    @Column(name = "payment_date")
-    private LocalDateTime paymentDate;
+    @Column(name = "card_number", nullable = false)
+    private String cardNumber;
 
-    @OneToOne
-    @JoinColumn (name = "order_id")
-    private OrderHistory orderHistory;
+    @Column(name = "cvv", nullable = false)
+    private String cvv;
+
+    @Column(name = "expiry_date", nullable = false)
+    private String expiryDate;
+
+    @Column(name = "payment_date", nullable = false)
+    private LocalDateTime paymentDate;
 }

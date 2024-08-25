@@ -10,5 +10,9 @@ public interface CustomerDao {
     Customer  registerCustomer (Customer customer);
     Customer  loginCustomer (Customer customer);
     Optional<Customer> findByEmail(String email);
+     Optional<Customer> findByToken(String token);
+
+
 
 }
+

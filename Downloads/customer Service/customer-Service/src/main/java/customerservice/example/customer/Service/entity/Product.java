@@ -26,8 +26,12 @@ public class Product {
     @Column (name = "price")
     private  Double price ;
 
-     @ManyToOne
-    @JoinColumn(name = "order_id")
-    private  OrderHistory orderHistory ;
+    @Column (name = "quantity")
+    private int qunatity ;
+    @Column(nullable = false)
+    private UUID productId;
+    @ManyToOne
+    @JoinColumn(name = "cart_id", nullable = false)
+    private Cart cart;
 
 }

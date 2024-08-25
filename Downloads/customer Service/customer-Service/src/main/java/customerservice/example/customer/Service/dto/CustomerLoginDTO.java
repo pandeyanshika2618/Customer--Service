@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -12,4 +14,6 @@ import lombok.Setter;
 public class CustomerLoginDTO {
     private String email;
     private String password ;
+    private String token;
+    private LocalDateTime tokenExpiration;
 }

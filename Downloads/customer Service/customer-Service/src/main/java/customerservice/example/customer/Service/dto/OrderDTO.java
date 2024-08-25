@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -17,4 +18,7 @@ public class OrderDTO {
     private UUID id;
     private LocalDateTime orderDate;
     private UUID customerId;
+    private List<ProductDTO> products ;
+
+
 }

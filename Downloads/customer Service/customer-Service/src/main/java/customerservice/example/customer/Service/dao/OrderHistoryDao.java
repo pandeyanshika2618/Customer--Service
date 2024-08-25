@@ -1,8 +1,5 @@
 package customerservice.example.customer.Service.dao;
 
-import customerservice.example.customer.Service.dto.CartDTO;
-import customerservice.example.customer.Service.dto.CheckoutRequestDTO;
-import customerservice.example.customer.Service.dto.OrderDTO;
 import customerservice.example.customer.Service.entity.Cart;
 import customerservice.example.customer.Service.entity.OrderHistory;
 

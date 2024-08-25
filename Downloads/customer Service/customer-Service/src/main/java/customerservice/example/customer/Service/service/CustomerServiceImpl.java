@@ -14,11 +14,12 @@ import java.util.Optional;
 @Service
 public class CustomerServiceImpl implements CustomerService{
     private CustomerDao customerDao ;
-
+    private TokenValidation tokenValidation;
     @Autowired
-    public CustomerServiceImpl (CustomerDao customerDao)
+    public CustomerServiceImpl (CustomerDao customerDao , TokenValidation tokenValidation)
     {
         this.customerDao = customerDao ;
+        this.tokenValidation = tokenValidation ;
     }
     @Override
     public CustomerResponseDTO registeration(CustomerRegisterDTO customerDTO) {
@@ -39,35 +40,18 @@ public class CustomerServiceImpl implements CustomerService{
         }
         if(customer.getToken() == null || LocalDateTime.now().isAfter(customer.getTokenExpiration()))
         {
-            String token = generateToken();
+            String token = tokenValidation.generateToken();
             LocalDateTime tokenExpiration = LocalDateTime.now().plusHours(1);
             customer.setToken(token);
             customer.setTokenExpiration(tokenExpiration);
             customerDao.loginCustomer(customer);
+            customerDao.registerCustomer(customer);
+
         }
         return customerToResponseDTO(customer);
 
     }
-    private  String generateToken()
-    {
-        String alphanumericString = "ABCDEFGHIJKLMNOPQRSTWXYZ"+"0123456789"+"abcdefghijklmnopqrstuvwxyz";
 
-        StringBuilder sb = new StringBuilder();
-
-
-        for (int i = 0 ; i < alphanumericString.length() ; i++)
-        {
-            int index
-                    = (int)(alphanumericString.length()
-                    * Math.random());
-
-
-            sb.append(alphanumericString
-                    .charAt(index));
-        }
-
-        return sb.toString();
-    }
      private  Customer registerDtoToEntity(CustomerRegisterDTO customerRegisterDTO)
      {
          Customer customer = new Customer();
