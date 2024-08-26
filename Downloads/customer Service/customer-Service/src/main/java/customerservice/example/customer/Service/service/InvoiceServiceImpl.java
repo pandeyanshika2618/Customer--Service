@@ -24,12 +24,12 @@ public class InvoiceServiceImpl implements InvoiceService{
         this.paymentDao = paymentDao;
     }
     @Override
-    public InvoiceDTO generateInvoice(UUID id) {
-        Optional<Payment> optionalPayment = paymentDao.findById(id);
+    public InvoiceDTO generateInvoice(UUID customerId) {
+        Optional<Payment> optionalPayment = paymentDao.findByCustomerId(customerId);
 
 
         if (!optionalPayment.isPresent()) {
-            throw new RuntimeException("Payment not found for ID: " + id);
+            throw new RuntimeException("Payment not found for ID: " + customerId);
         }
 
 
@@ -37,7 +37,7 @@ public class InvoiceServiceImpl implements InvoiceService{
 
 
         Invoice invoice = new Invoice();
-        invoice.setOrderId(id);
+        invoice.setCustomerId(customerId);
         invoice.setInvoiceDate(payment.getPaymentDate());
         invoice.setTotalAmount(payment.getAmount());
         Invoice savedInvoice = invoiceDao.saveInvoice(invoice);
@@ -46,7 +46,7 @@ public class InvoiceServiceImpl implements InvoiceService{
     private InvoiceDTO convertToDTO(Invoice invoice) {
         InvoiceDTO dto = new InvoiceDTO();
         dto.setId(invoice.getId());
-        dto.setOrderId(invoice.getOrderId());
+        dto.setOrderId(invoice.getCustomerId());
         dto.setAmount(invoice.getTotalAmount());
         dto.setInvoiceDate(invoice.getInvoiceDate());
         dto.setCustomerId(invoice.getCustomerId());

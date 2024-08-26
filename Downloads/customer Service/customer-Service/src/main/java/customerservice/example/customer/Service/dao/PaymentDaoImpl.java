@@ -22,9 +22,9 @@ public class PaymentDaoImpl implements PaymentDao{
     }
 
     @Override
-    public Optional<Payment> findById(UUID id) {
+    public Optional<Payment> findByCustomerId(UUID customerId) {
 
-        return paymentRepository.findById(id);
+        return paymentRepository.findByCustomerId(customerId);
     }
 
 

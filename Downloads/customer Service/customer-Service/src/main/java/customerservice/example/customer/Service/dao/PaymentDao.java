@@ -9,6 +9,6 @@ import java.util.UUID;
 @Repository
 public interface PaymentDao {
      Payment savePayment(Payment payment);
-     Optional<Payment> findById(UUID id);
+     Optional<Payment> findByCustomerId(UUID customerId);
 }
 

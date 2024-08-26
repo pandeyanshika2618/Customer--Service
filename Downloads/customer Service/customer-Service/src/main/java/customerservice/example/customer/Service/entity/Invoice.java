@@ -24,14 +24,17 @@ public class Invoice {
 
     @Column(name = "total_amount")
     private Double totalAmount;
-    @Column(name = "order_id", nullable = false)
-    private UUID orderId;
+//    @Column(name = "order_id", nullable = false)
+//    private UUID orderId;
     @Column(name = "customer_id", nullable = false)
     private UUID customerId;
 
 
-//    @OneToOne
-//    @JoinColumn(name = "order_id")
-//    private OrderHistory orderHistory;
+
+
+
+
+
+
 
 }

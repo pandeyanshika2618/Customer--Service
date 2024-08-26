@@ -24,7 +24,7 @@ public class ReceiptServiceImpl implements ReceiptService {
         this.paymentDao = paymentDao;
     }
     public ReceiptDTO generateReceipt(UUID customerId) {
-        Optional<Payment> optionalPayment = paymentDao.findById(customerId);
+        Optional<Payment> optionalPayment = paymentDao.findByCustomerId(customerId);
 
 
         if (!optionalPayment.isPresent()) {

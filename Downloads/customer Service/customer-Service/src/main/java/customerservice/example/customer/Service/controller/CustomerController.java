@@ -30,8 +30,6 @@ public class CustomerController {
     {
         return customerService.login(customerLoginDTO);
     }
-{
 
-}
 
 }

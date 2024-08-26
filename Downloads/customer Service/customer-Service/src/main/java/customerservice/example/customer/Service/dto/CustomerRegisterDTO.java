@@ -18,6 +18,5 @@ public class CustomerRegisterDTO {
     private String lastName;
     private String email;
     private String password;
-//    private String token;
-//    private LocalDateTime tokenExpiration;
+
 }

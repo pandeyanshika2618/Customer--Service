@@ -58,6 +58,8 @@ public class PaymentController {
     public ReceiptDTO getReceipt(@PathVariable("customer_id") UUID customerId, @RequestHeader("Authorization") String token) throws Exception
     {
         tokenValidation.isTokenValid(token ,customerId);
+
+
         ReceiptDTO receiptDTO = receiptService.generateReceipt(customerId);
 
 
