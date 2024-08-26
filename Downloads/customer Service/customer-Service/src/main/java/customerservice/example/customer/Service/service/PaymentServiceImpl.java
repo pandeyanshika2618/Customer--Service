@@ -15,14 +15,7 @@ import java.util.UUID;
         @Autowired
         private PaymentDao paymentDao;
 
-//        @Autowired
-//        private InvoiceDao invoiceDao;
-//
-//        @Autowired
-//        private ReceiptDao receiptDao;
-//
-//        @Autowired
-//        private OrderHistoryDao orderHistoryDao;
+
 
 
     @Override
@@ -47,13 +40,5 @@ import java.util.UUID;
     }
     }
 
-//    @Override
-//    public InvoiceDTO getInvoice(UUID invoiceId) {
-//        return null;
-//    }
-//
-//    @Override
-//    public ReceiptDTO getReceipt(UUID receiptId) {
-//        return null;
 
 

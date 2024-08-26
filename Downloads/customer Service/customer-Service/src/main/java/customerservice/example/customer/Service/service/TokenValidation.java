@@ -1,11 +1,13 @@
 package customerservice.example.customer.Service.service;
 
+import customerservice.example.customer.Service.dao.CustomerDao;
 import customerservice.example.customer.Service.entity.Customer;
 import customerservice.example.customer.Service.repo.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -15,12 +17,13 @@ public class TokenValidation {
     private static final String ALPHANUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
     private static final int TOKEN_LENGTH = 32; // Define a fixed token length
 
-    private CustomerRepository customerRepository;
+    private final CustomerDao customerDao;
 
     @Autowired
-    public TokenValidation(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
+    public TokenValidation(CustomerDao customerDao) {
+        this.customerDao = customerDao;
     }
+
 
     // Generate a secure token
     public String generateToken() {
@@ -61,7 +64,11 @@ public class TokenValidation {
     }
 
     // Validate token
-    public boolean isTokenValid(String token) {
-        return customerRepository.findByToken(token).isPresent();
+    public boolean isTokenValid(String token , UUID userID) throws Exception{
+        Customer customer=customerDao.findById(userID);
+        if(Objects.isNull(customer)||!token.equalsIgnoreCase(customer.getToken())){
+            throw new RuntimeException("User not found, Invalid token and user id.");
+        }
+        return true;
     }
 }

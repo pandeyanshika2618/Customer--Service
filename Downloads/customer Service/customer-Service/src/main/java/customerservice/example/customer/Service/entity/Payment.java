@@ -33,9 +33,8 @@ public class Payment {
     @Column(name = "cvv", nullable = false)
     private String cvv;
 
-    @Column(name = "expiry_date", nullable = false)
+    @Column(nullable = false)
     private String expiryDate;
-
     @Column(name = "payment_date", nullable = false)
     private LocalDateTime paymentDate;
 }

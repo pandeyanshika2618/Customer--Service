@@ -14,6 +14,5 @@ import java.time.LocalDateTime;
 public class CustomerLoginDTO {
     private String email;
     private String password ;
-    private String token;
-    private LocalDateTime tokenExpiration;
+
 }

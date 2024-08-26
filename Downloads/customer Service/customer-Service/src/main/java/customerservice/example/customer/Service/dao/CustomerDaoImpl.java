@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public class CustomerDaoImpl implements CustomerDao{
@@ -42,6 +43,15 @@ public class CustomerDaoImpl implements CustomerDao{
     @Override
     public Optional<Customer> findByEmail(String email) {
         return customerRepository.findByEmail(email);
+    }
+
+    @Override
+    public Customer findById(UUID id) {
+        Optional<Customer> entity=customerRepository.findById(id);
+        if(entity.isEmpty()){
+            throw new RuntimeException("User Not found");
+        }
+        return  entity.isPresent()?entity.get():null;
     }
 
     @Override

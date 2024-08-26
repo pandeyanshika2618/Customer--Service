@@ -12,14 +12,12 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-
-
 public class PaymentDTO {
 
     private UUID customerId;
     private String cardNumber;
 
-    private String ExpiryDate;
+    private String expiryDate;
     private String cvv;
     private double amount;
     private LocalDateTime paymentDate;
