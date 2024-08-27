@@ -26,6 +26,8 @@ public class Product {
     @Column (name = "price")
     private  Double price ;
 
+//    @Column (name = "Order_Id")
+//    private  UUID  order_id ;
     @Column (name = "quantity")
     private int qunatity ;
     @Column(nullable = false)

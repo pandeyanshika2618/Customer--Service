@@ -66,9 +66,12 @@ public class CartController {
         tokenValidation.isTokenValid(token , customerId);
 
         CheckoutResponseDTO response = cartService.checkoutCart(customerId, addressDTO);
-        if (response != null) {
-            return ResponseEntity.ok("Cart checked out successfully. Total amount: " + response.getTotalAmmount());
+        if (response != null && response.getOrderId() != null) {
+            String successMessage = String.format("Your Order has been placed . \nOrder ID: %s, \nTotal amount: %.2f",
+                    response.getOrderId(), response.getTotalAmmount());
+            return ResponseEntity.ok(successMessage);
         }
+
         return ResponseEntity.status(400).body("Failed to checkout cart");
     }
 

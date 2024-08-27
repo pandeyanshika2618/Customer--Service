@@ -1,6 +1,7 @@
 package customerservice.example.customer.Service.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,16 +22,21 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "customer_id", nullable = false)
+
+
+
+    @Column(name = "customer_id", nullable = false , unique = true)
     private UUID customerId;
 
     @Column(name = "amount", nullable = false)
     private Double amount;
 
     @Column(name = "card_number", nullable = false)
+    @NotBlank(message = "cardNumber can't Blank")
     private String cardNumber;
 
     @Column(name = "cvv", nullable = false)
+    @NotBlank (message = "cvv canNot be blank")
     private String cvv;
 
     @Column(nullable = false)

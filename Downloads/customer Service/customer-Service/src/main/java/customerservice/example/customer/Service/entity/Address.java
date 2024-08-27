@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.UUID;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -15,10 +14,9 @@ import java.util.UUID;
 @Entity
 @Table(name = "Addresses")
 public class Address {
-
     @Id
-    @GeneratedValue (strategy = GenerationType.UUID)
-    private UUID id ;
+@GeneratedValue(strategy = GenerationType.UUID)
+private UUID id ;
 
     @Column (name = "addressLine1")
     private String addressLine1;
@@ -26,7 +24,7 @@ public class Address {
     @Column (name = "addressLine2")
     private String addressLine2;
 
-    @Column (name = "street")
+    @Column(name = "street")
     private String street ;
 
     @Column (name = "city")
@@ -41,7 +39,6 @@ public class Address {
     @OneToOne
     @JoinColumn(name = "customer_id ")
     private Customer  customer;
-
 
 
 }

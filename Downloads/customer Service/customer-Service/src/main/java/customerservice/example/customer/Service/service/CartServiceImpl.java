@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import static org.apache.tomcat.jni.Buffer.address;
+
 @Service
 public class CartServiceImpl implements CartService{
     private CartDao cartDAO ;
@@ -58,10 +60,10 @@ public class CartServiceImpl implements CartService{
     public CheckoutResponseDTO checkoutCart(UUID customerId, AddressDTO addressDTO) {
         Cart cart = cartDAO.findCartByCustomerId(customerId);
         if (cart == null) {
-            return null; // Cart not found
+            return null;
         }
 
-        // Calculate total amount
+
         List<Product> products = cartDAO.findProductsByCartId(cart.getId());
         if (products.isEmpty()) {
             System.out.println("No products found in cart with ID: " + cart.getId());
@@ -71,9 +73,11 @@ public class CartServiceImpl implements CartService{
                 .mapToDouble(product -> product.getPrice() * product.getQunatity())
                 .sum();
 
-        // Save address
+
         Address address = new Address();
         address.setId(addressDTO.getCustomerId());
+        address.setAddressLine1(addressDTO.getAddressLine1());
+        address.setAddressLine2(addressDTO.getAddressLine2());
         address.setStreet(addressDTO.getStreet());
         address.setCity(addressDTO.getCity());
         address.setState(addressDTO.getState());
@@ -81,8 +85,10 @@ public class CartServiceImpl implements CartService{
         addressDAO.save(address);
 
 
-
-        return new CheckoutResponseDTO(totalAmount);
+      UUID orderID = UUID.randomUUID();
+      cart.setOrderId(orderID);
+      cartDAO.saveCart(cart);
+        return new CheckoutResponseDTO(totalAmount ,orderID );
     }
 
     @Override
@@ -90,7 +96,7 @@ public class CartServiceImpl implements CartService{
         Cart cart = cartDAO.findCartByCustomerId(customerId);
         if (cart == null) {
             System.out.println("Cart not found for customerId: " + customerId);
-            return null;
+
         }
 
         List<Product> products = cartDAO.findProductsByCartId(cart.getId());
@@ -102,7 +108,7 @@ public class CartServiceImpl implements CartService{
                 .mapToDouble(product -> product.getPrice() * product.getQunatity())
                 .sum();
 
-        // Log the total amount
+
         System.out.println("Total amount for cart ID " + cart.getId() + " is: " + totalAmount);
 
         List<ProductDTO> productDTOs = products.stream()

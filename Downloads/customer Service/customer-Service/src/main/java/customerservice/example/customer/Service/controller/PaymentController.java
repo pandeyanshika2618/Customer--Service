@@ -10,6 +10,7 @@ import customerservice.example.customer.Service.service.InvoiceService;
 import customerservice.example.customer.Service.service.PaymentService;
 import customerservice.example.customer.Service.service.ReceiptService;
 import customerservice.example.customer.Service.service.TokenValidation;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class PaymentController {
     }
 
     @PostMapping("/payment/process")
-    public ResponseEntity<String> processPayment(@RequestBody PaymentDTO paymentDTO , @RequestHeader("Authorization") String token , @RequestHeader("UserId") String userId)throws Exception{
+    public ResponseEntity<String> processPayment(@Valid @RequestBody PaymentDTO paymentDTO , @RequestHeader("Authorization") String token , @RequestHeader("UserId") String userId)throws Exception{
 
         tokenValidation.isTokenValid(token , UUID.fromString(userId));
         String response = paymentService.processPayment(paymentDTO);

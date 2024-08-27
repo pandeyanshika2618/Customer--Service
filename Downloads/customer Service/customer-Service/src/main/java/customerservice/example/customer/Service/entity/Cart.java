@@ -25,6 +25,8 @@ public class Cart {
     @Column(name = "customer_id", nullable = false)
     private UUID customerId;
 
+    @Column(name = "order_id")
+    private UUID orderId ;
 
     @OneToOne
     @JoinColumn(name = "customer_id", insertable = false, updatable = false)
