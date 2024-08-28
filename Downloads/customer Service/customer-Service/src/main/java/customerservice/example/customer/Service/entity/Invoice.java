@@ -22,12 +22,20 @@ public class Invoice {
     @Column(name = "invoice_date")
     private LocalDateTime invoiceDate;
 
+    @Column(name = "invoice_Number")
+    private  String invoice_Number ;
+
     @Column(name = "total_amount")
     private Double totalAmount;
+
+//    @Column(name =  "quantity_of_goods")
+//    private Integer quantity ;
 //    @Column(name = "order_id", nullable = false)
 //    private UUID orderId;
     @Column(name = "customer_id", nullable = false)
     private UUID customerId;
+
+
 
 
 

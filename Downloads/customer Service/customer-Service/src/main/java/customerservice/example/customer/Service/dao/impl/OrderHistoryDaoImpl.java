@@ -1,6 +1,7 @@
-package customerservice.example.customer.Service.dao;
+package customerservice.example.customer.Service.dao.impl;
 
 
+import customerservice.example.customer.Service.dao.OrderHistoryDao;
 import customerservice.example.customer.Service.entity.Cart;
 import customerservice.example.customer.Service.entity.OrderHistory;
 import customerservice.example.customer.Service.repo.OrderHistoryRepository;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public class OrderHistoryDaoImpl implements  OrderHistoryDao{
+public class OrderHistoryDaoImpl implements OrderHistoryDao {
        private OrderHistoryRepository orderHistoryRepository ;
 
        @Autowired

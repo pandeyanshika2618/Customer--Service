@@ -1,4 +1,4 @@
-package customerservice.example.customer.Service.service;
+package customerservice.example.customer.Service.service.impl;
 
 import customerservice.example.customer.Service.dao.CustomerDao;
 import customerservice.example.customer.Service.dto.CustomerLoginDTO;
@@ -6,6 +6,7 @@ import customerservice.example.customer.Service.dto.CustomerRegisterDTO;
 import customerservice.example.customer.Service.dto.CustomerResponseDTO;
 import customerservice.example.customer.Service.entity.Customer;
 import customerservice.example.customer.Service.exceptionHandler.InvalidCredentialsException;
+import customerservice.example.customer.Service.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

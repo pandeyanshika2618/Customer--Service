@@ -21,5 +21,7 @@ public interface CartDao {
     void deleteCartItemsByCartId(UUID cartId);
      void saveAddress(Address address) ;
 
+    UUID findOrderIdByCustomerId(UUID customerId);
+
 
 }

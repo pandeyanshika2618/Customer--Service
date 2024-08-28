@@ -17,5 +17,9 @@ public class ReceiptDTO {
     private Double amount;
     private LocalDateTime paymentDate;
     private String receiptNumber;
-    private PaymentDTO paymentDTO;
+
+//    private PaymentDTO paymentDTO;
+//private AddressDTO billingAddress;
+//    private AddressDTO shippingAddress;
+
 }

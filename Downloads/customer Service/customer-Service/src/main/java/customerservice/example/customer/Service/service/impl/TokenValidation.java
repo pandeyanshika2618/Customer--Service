@@ -1,4 +1,4 @@
-package customerservice.example.customer.Service.service;
+package customerservice.example.customer.Service.service.impl;
 
 import customerservice.example.customer.Service.dao.CustomerDao;
 import customerservice.example.customer.Service.entity.Customer;
@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
@@ -24,7 +25,7 @@ public class TokenValidation {
     }
 
 
-    // Generate a secure token
+
     public String generateToken() {
         SecureRandom random = new SecureRandom();
         StringBuilder sb = new StringBuilder(TOKEN_LENGTH);
@@ -64,5 +65,9 @@ public class TokenValidation {
             throw new RuntimeException("User not found, Invalid token and user id.");
         }
         return true;
+    }
+    public boolean isTokenExpired (LocalDateTime expirationTime)
+    {
+        return LocalDateTime.now().isAfter(expirationTime);
     }
 }

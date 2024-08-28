@@ -1,10 +1,11 @@
-package customerservice.example.customer.Service.service;
+package customerservice.example.customer.Service.service.impl;
 
 import customerservice.example.customer.Service.dao.InvoiceDao;
 import customerservice.example.customer.Service.dao.PaymentDao;
 import customerservice.example.customer.Service.dto.InvoiceDTO;
 import customerservice.example.customer.Service.entity.Invoice;
 import customerservice.example.customer.Service.entity.Payment;
+import customerservice.example.customer.Service.service.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,16 +13,18 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class InvoiceServiceImpl implements InvoiceService{
+public class InvoiceServiceImpl implements InvoiceService {
 
     private InvoiceDao invoiceDao ;
     private PaymentDao paymentDao;
+    ;
 
     @Autowired
-    public InvoiceServiceImpl (InvoiceDao invoiceDao , PaymentDao paymentDao)
+    public InvoiceServiceImpl (InvoiceDao invoiceDao , PaymentDao paymentDao )
     {
         this.invoiceDao = invoiceDao;
         this.paymentDao = paymentDao;
+
     }
     @Override
     public InvoiceDTO generateInvoice(UUID customerId) {
@@ -38,6 +41,7 @@ public class InvoiceServiceImpl implements InvoiceService{
 
         Invoice invoice = new Invoice();
         invoice.setCustomerId(customerId);
+
         invoice.setInvoiceDate(payment.getPaymentDate());
         invoice.setTotalAmount(payment.getAmount());
         Invoice savedInvoice = invoiceDao.saveInvoice(invoice);
@@ -46,7 +50,7 @@ public class InvoiceServiceImpl implements InvoiceService{
     private InvoiceDTO convertToDTO(Invoice invoice) {
         InvoiceDTO dto = new InvoiceDTO();
         dto.setId(invoice.getId());
-        dto.setOrderId(invoice.getCustomerId());
+       // dto.setOrderId(invoice.getCustomerId());
         dto.setAmount(invoice.getTotalAmount());
         dto.setInvoiceDate(invoice.getInvoiceDate());
         dto.setCustomerId(invoice.getCustomerId());

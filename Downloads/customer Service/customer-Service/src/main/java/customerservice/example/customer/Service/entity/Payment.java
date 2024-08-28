@@ -28,6 +28,9 @@ public class Payment {
     @Column(name = "customer_id", nullable = false , unique = true)
     private UUID customerId;
 
+    @Column(name = "order_id")
+    private UUID orderID ;
+
     @Column(name = "amount", nullable = false)
     private Double amount;
 
@@ -43,4 +46,6 @@ public class Payment {
     private String expiryDate;
     @Column(name = "payment_date", nullable = false)
     private LocalDateTime paymentDate;
+
+
 }

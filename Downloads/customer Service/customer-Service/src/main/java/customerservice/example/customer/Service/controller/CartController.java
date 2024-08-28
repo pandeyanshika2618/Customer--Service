@@ -2,13 +2,11 @@ package customerservice.example.customer.Service.controller;
 
 import customerservice.example.customer.Service.dto.*;
 import customerservice.example.customer.Service.service.CartService;
-import customerservice.example.customer.Service.service.TokenValidation;
+import customerservice.example.customer.Service.service.impl.TokenValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.rmi.server.UID;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController

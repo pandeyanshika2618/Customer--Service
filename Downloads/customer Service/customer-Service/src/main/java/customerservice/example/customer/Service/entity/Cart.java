@@ -27,10 +27,10 @@ public class Cart {
 
     @Column(name = "order_id")
     private UUID orderId ;
-
-    @OneToOne
-    @JoinColumn(name = "customer_id", insertable = false, updatable = false)
-    private Customer customer;
+//
+//    @OneToOne
+//    @JoinColumn(name = "customer_id", insertable = false, updatable = false)
+//    private Customer customer;
 
 
 }

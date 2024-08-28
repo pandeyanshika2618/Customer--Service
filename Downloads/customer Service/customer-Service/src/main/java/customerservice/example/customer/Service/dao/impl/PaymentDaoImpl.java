@@ -1,5 +1,6 @@
-package customerservice.example.customer.Service.dao;
+package customerservice.example.customer.Service.dao.impl;
 
+import customerservice.example.customer.Service.dao.PaymentDao;
 import customerservice.example.customer.Service.entity.Payment;
 import customerservice.example.customer.Service.repo.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public class PaymentDaoImpl implements PaymentDao{
+public class PaymentDaoImpl implements PaymentDao {
     private PaymentRepository paymentRepository;
     @Autowired
    public PaymentDaoImpl (PaymentRepository paymentRepository)

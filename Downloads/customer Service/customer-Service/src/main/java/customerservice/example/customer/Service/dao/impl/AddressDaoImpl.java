@@ -1,5 +1,6 @@
-package customerservice.example.customer.Service.dao;
+package customerservice.example.customer.Service.dao.impl;
 
+import customerservice.example.customer.Service.dao.AddressDAO;
 import customerservice.example.customer.Service.entity.Address;
 import customerservice.example.customer.Service.repo.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public class AddressDaoImpl implements AddressDAO{
+public class AddressDaoImpl implements AddressDAO {
     @Autowired
     private AddressRepository addressRepository;
     @Override

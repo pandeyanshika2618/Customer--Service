@@ -1,7 +1,9 @@
 package customerservice.example.customer.Service.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,7 +32,8 @@ public class PaymentDTO {
     @Pattern(regexp = "\\d{3}", message = "CVV must be 3 digits")
     private String cvv;
 
-    @NotBlank (message = "Please Enter amount")
+    @NotNull(message = "Amount cannot be null")
+    @Positive(message = "Amount must be positive")
     private double amount;
 
     private LocalDateTime paymentDate;

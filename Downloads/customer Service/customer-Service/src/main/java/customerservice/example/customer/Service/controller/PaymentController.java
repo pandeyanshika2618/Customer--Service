@@ -4,12 +4,10 @@ package customerservice.example.customer.Service.controller;
 import customerservice.example.customer.Service.dto.InvoiceDTO;
 import customerservice.example.customer.Service.dto.PaymentDTO;
 import customerservice.example.customer.Service.dto.ReceiptDTO;
-import customerservice.example.customer.Service.repo.InvoiceRepository;
-import customerservice.example.customer.Service.repo.PaymentRepository;
 import customerservice.example.customer.Service.service.InvoiceService;
 import customerservice.example.customer.Service.service.PaymentService;
 import customerservice.example.customer.Service.service.ReceiptService;
-import customerservice.example.customer.Service.service.TokenValidation;
+import customerservice.example.customer.Service.service.impl.TokenValidation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -39,8 +37,10 @@ public class PaymentController {
     public ResponseEntity<String> processPayment(@Valid @RequestBody PaymentDTO paymentDTO , @RequestHeader("Authorization") String token , @RequestHeader("UserId") String userId)throws Exception{
 
         tokenValidation.isTokenValid(token , UUID.fromString(userId));
-        String response = paymentService.processPayment(paymentDTO);
-        return ResponseEntity.ok(response);
+        String invoiceId = paymentService.processPayment(paymentDTO);
+       // String response = paymentService.processPayment(paymentDTO);
+       // return ResponseEntity.ok(response);
+        return ResponseEntity.ok("Payment done successfully. Invoice ID: " + invoiceId);
     }
 
 

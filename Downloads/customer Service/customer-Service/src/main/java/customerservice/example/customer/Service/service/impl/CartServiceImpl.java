@@ -1,8 +1,7 @@
-package customerservice.example.customer.Service.service;
+package customerservice.example.customer.Service.service.impl;
 
 import customerservice.example.customer.Service.dao.AddressDAO;
 import customerservice.example.customer.Service.dao.CartDao;
-import customerservice.example.customer.Service.dao.ProductDao;
 import customerservice.example.customer.Service.dto.AddressDTO;
 import customerservice.example.customer.Service.dto.CartDTO;
 import customerservice.example.customer.Service.dto.CheckoutResponseDTO;
@@ -10,6 +9,7 @@ import customerservice.example.customer.Service.dto.ProductDTO;
 import customerservice.example.customer.Service.entity.Address;
 import customerservice.example.customer.Service.entity.Cart;
 import customerservice.example.customer.Service.entity.Product;
+import customerservice.example.customer.Service.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +17,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import static org.apache.tomcat.jni.Buffer.address;
-
 @Service
-public class CartServiceImpl implements CartService{
+public class CartServiceImpl implements CartService {
     private CartDao cartDAO ;
     private AddressDAO addressDAO;
 //    private ProductDao productDao ;

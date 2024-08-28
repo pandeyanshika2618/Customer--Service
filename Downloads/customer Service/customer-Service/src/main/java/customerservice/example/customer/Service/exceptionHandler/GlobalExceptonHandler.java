@@ -37,7 +37,7 @@ public class GlobalExceptonHandler {
     public ResponseEntity<Map<String, String>> handleInvalidCredentialsException(InvalidCredentialsException ex) {
         Map<String, String> response = new HashMap<>();
         response.put("error", ex.getMessage());
-        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED); // or HttpStatus.FORBIDDEN
+        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
     }
 
 

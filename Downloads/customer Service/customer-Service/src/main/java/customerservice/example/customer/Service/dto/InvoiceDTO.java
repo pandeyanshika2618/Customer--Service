@@ -14,8 +14,9 @@ import java.util.UUID;
 @Setter
 public class InvoiceDTO {
     private UUID id;
-    private UUID orderId;
+  //  private UUID orderId;
     private Double amount;
     private LocalDateTime invoiceDate;
     private UUID customerId;
+  //  private String quantityOfgoods;
 }
