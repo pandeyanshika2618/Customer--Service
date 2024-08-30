@@ -6,9 +6,10 @@ import customerservice.example.customer.Service.dto.CustomerResponseDTO;
 import customerservice.example.customer.Service.service.CustomerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 public class CustomerController {
@@ -30,6 +31,13 @@ public class CustomerController {
     public CustomerResponseDTO loginCustomer (@RequestBody CustomerLoginDTO  customerLoginDTO) throws Exception
     {
         return customerService.login(customerLoginDTO);
+    }
+
+    @PostMapping("/customers/logout/{customer_id}")
+    public String logoutCustomer( @PathVariable("customer_id") UUID customerId)
+    {
+       return customerService.logoutCustomerByID(customerId);
+
     }
 
 

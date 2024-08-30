@@ -28,6 +28,11 @@ public class PaymentDaoImpl implements PaymentDao {
         return paymentRepository.findByCustomerId(customerId);
     }
 
+//    @Override
+//    public Optional<Payment> findById(UUID customerId) {
+//        return paymentRepository.findById(customerId);
+//    }
+
 
 }
 

@@ -10,5 +10,6 @@ import java.util.UUID;
 public interface PaymentDao {
      Payment savePayment(Payment payment);
      Optional<Payment> findByCustomerId(UUID customerId);
+     //Optional<Payment> findById(UUID customerId);
 }
 

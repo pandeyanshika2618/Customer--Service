@@ -67,6 +67,18 @@ public class PaymentController {
 
         return receiptDTO;
     }
+//    @GetMapping("/payment/receiptv2/{customerId}")
+//    public ReceiptDTO getReceipt(@PathVariable("customerId") UUID customerId, @RequestHeader("Authorization") String token) throws Exception
+//    {
+//        tokenValidation.isTokenValid(token ,customerId);
+//
+//
+//        ReceiptDTO receiptDTO = receiptService.generateReceipt(customerId);
+//
+//
+//
+//        return receiptDTO;
+//    }
 
 
 }

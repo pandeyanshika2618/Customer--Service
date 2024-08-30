@@ -17,7 +17,7 @@ import java.util.UUID;
 @Table(name = "receipts")
 public class Receipt {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(name = "receipt_date")

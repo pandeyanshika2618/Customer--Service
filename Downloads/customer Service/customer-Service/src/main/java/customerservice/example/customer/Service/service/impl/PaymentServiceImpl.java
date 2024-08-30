@@ -64,7 +64,7 @@ public String processPayment(PaymentDTO paymentDTO) {
         return "Customer ID is required";
     }
 
-    Cart  cart = cartDao.findCartByCustomerId(paymentDTO.getCustomerId());
+    Cart cart = cartDao.findCartByCustomerId(paymentDTO.getCustomerId());
     if (cart == null)
         return "cart Not found for thr given Customer Id";
 

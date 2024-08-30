@@ -61,6 +61,16 @@ public class CustomerDaoImpl implements CustomerDao {
 
     }
 
+    @Override
+    public void deleteById(UUID customerId) {
+        customerRepository.deleteById(customerId);
+    }
+
+    @Override
+    public boolean existsById(UUID id) {
+        return customerRepository.existsById(id);
+    }
+
 
 
 }

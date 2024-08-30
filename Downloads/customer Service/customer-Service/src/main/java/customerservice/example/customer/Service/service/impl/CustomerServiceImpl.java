@@ -8,10 +8,12 @@ import customerservice.example.customer.Service.entity.Customer;
 import customerservice.example.customer.Service.exceptionHandler.InvalidCredentialsException;
 import customerservice.example.customer.Service.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -102,6 +104,15 @@ public class CustomerServiceImpl implements CustomerService {
 
         return customerToResponseDTO(customer);
     }
+
+    @Override
+    public String logoutCustomerByID(UUID customerID) {
+
+       tokenValidation.invaliDateToken(customerID);
+       return " You are loggedOut!! ";
+    }
+
+
 
 
 }

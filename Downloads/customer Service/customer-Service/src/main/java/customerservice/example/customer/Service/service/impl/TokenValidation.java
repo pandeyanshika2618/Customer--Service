@@ -70,4 +70,11 @@ public class TokenValidation {
     {
         return LocalDateTime.now().isAfter(expirationTime);
     }
+    public void invaliDateToken (UUID customerId)
+    {
+        Customer customer = customerDao.findById(customerId) ;
+        customer.setToken(null);
+        customerDao.registerCustomer(customer);
+
+    }
 }

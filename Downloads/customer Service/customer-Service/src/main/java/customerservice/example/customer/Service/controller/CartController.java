@@ -18,7 +18,6 @@ public class CartController {
     @Autowired
     public CartController(CartService cartService, TokenValidation tokenValidation) {
         this.cartService = cartService;
-
         this.tokenValidation = tokenValidation;
     }
 

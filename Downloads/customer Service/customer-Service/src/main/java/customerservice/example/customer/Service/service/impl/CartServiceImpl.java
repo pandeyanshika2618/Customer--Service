@@ -62,13 +62,13 @@ public class CartServiceImpl implements CartService {
         }
 
 
-        List<Product> products = cartDAO.findProductsByCartId(cart.getId());
-        if (products.isEmpty()) {
+        List<Product> productEntities = cartDAO.findProductsByCartId(cart.getId());
+        if (productEntities.isEmpty()) {
             System.out.println("No products found in cart with ID: " + cart.getId());
         }
 
-        double totalAmount = products.stream()
-                .mapToDouble(product -> product.getPrice() * product.getQunatity())
+        double totalAmount = productEntities.stream()
+                .mapToDouble(productEntity -> productEntity.getPrice() * productEntity.getQunatity())
                 .sum();
 
 
@@ -97,19 +97,19 @@ public class CartServiceImpl implements CartService {
 
         }
 
-        List<Product> products = cartDAO.findProductsByCartId(cart.getId());
-        if (products.isEmpty()) {
+        List<Product> productEntities = cartDAO.findProductsByCartId(cart.getId());
+        if (productEntities.isEmpty()) {
             System.out.println("No products found in cart with ID: " + cart.getId());
         }
 
-        double totalAmount = products.stream()
-                .mapToDouble(product -> product.getPrice() * product.getQunatity())
+        double totalAmount = productEntities.stream()
+                .mapToDouble(productEntity -> productEntity.getPrice() * productEntity.getQunatity())
                 .sum();
 
 
         System.out.println("Total amount for cart ID " + cart.getId() + " is: " + totalAmount);
 
-        List<ProductDTO> productDTOs = products.stream()
+        List<ProductDTO> productDTOs = productEntities.stream()
                 .map(p -> new ProductDTO(p.getId(), p.getName(), p.getPrice(), p.getQunatity()))
                 .collect(Collectors.toList());
 
@@ -133,10 +133,10 @@ public class CartServiceImpl implements CartService {
 //    }
         private CartDTO toDTO(Cart cart) {
             List<ProductDTO> items = cartDAO.findProductsByCartId(cart.getId()).stream()
-                    .map(product -> {
+                    .map(productEntity -> {
                         ProductDTO productDTO = new ProductDTO();
-                        productDTO.setId(product.getProductId());
-                        productDTO.setQuantity(product.getQunatity());
+                        productDTO.setId(productEntity.getProductId());
+                        productDTO.setQuantity(productEntity.getQunatity());
                         return productDTO;
                     })
                     .collect(Collectors.toList());

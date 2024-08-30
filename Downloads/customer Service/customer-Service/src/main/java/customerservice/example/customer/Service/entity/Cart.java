@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.HashSet;
+import java.util.List;
 import java.util.UUID;
 
 @NoArgsConstructor
@@ -27,6 +27,9 @@ public class Cart {
 
     @Column(name = "order_id")
     private UUID orderId ;
+
+    @OneToMany(mappedBy = "cart")
+    private List<Product> products;
 //
 //    @OneToOne
 //    @JoinColumn(name = "customer_id", insertable = false, updatable = false)
