@@ -40,6 +40,13 @@ public class GlobalExceptonHandler {
         return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
     }
 
+    @ExceptionHandler(RegisterationDuplicacyException.class)
+    public ResponseEntity<Map<String,String>> handleRegisterationDuplicacyException(RegisterationDuplicacyException ex)
+    {
+        Map<String, String> response = new HashMap<>();
+        response.put("error", ex.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+    }
 
 
 }

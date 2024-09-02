@@ -6,6 +6,7 @@ import customerservice.example.customer.Service.dto.CustomerRegisterDTO;
 import customerservice.example.customer.Service.dto.CustomerResponseDTO;
 import customerservice.example.customer.Service.entity.Customer;
 import customerservice.example.customer.Service.exceptionHandler.InvalidCredentialsException;
+import customerservice.example.customer.Service.exceptionHandler.RegisterationDuplicacyException;
 import customerservice.example.customer.Service.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,14 +27,14 @@ public class CustomerServiceImpl implements CustomerService {
         this.tokenValidation = tokenValidation;
     }
 
-    @Override
-    public CustomerResponseDTO registeration(CustomerRegisterDTO customerDTO) {
-
-        Customer customer = registerDtoToEntity(customerDTO);
-        Customer tobeSavedCustomer = customerDao.registerCustomer(customer);
-
-        return customerToResponseDTO(tobeSavedCustomer);
-    }
+//    @Override
+//    public CustomerResponseDTO registeration(CustomerRegisterDTO customerDTO) {
+//
+//        Customer customer = registerDtoToEntity(customerDTO);
+//        Customer tobeSavedCustomer = customerDao.registerCustomer(customer);
+//
+//        return customerToResponseDTO(tobeSavedCustomer);
+//    }
 
 //    @Override
 //    public CustomerResponseDTO login(CustomerLoginDTO customerLoginDTO) {
@@ -111,7 +112,17 @@ public class CustomerServiceImpl implements CustomerService {
        tokenValidation.invaliDateToken(customerID);
        return " You are loggedOut!! ";
     }
+    @Override
+    public CustomerResponseDTO registeration(CustomerRegisterDTO customerDTO) {
+        if (customerDao.existByEmail(customerDTO.getEmail()))
+        {
+            throw new RegisterationDuplicacyException("This email is already in use");
+        }
+        Customer customer = registerDtoToEntity(customerDTO);
+        Customer tobeSavedCustomer = customerDao.registerCustomer(customer);
 
+        return customerToResponseDTO(tobeSavedCustomer);
+    }
 
 
 

@@ -71,6 +71,10 @@ public class CustomerDaoImpl implements CustomerDao {
         return customerRepository.existsById(id);
     }
 
+    @Override
+    public boolean existByEmail(String email) {
+        return customerRepository.existsByEmail(email);
+    }
 
 
 }

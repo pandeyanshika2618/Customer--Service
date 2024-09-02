@@ -15,6 +15,7 @@ public interface CustomerDao {
      Optional<Customer> findByToken(String token);
      void deleteById(UUID customerId);
      boolean existsById(UUID id);
+     boolean existByEmail(String email);
 
 
 

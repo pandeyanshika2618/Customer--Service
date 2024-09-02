@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+/**
+ * REST controller to process payment requests.
+ */
 @RestController
 public class PaymentController {
 
@@ -33,6 +36,13 @@ public class PaymentController {
         this.tokenValidation = tokenValidation;
     }
 
+    /**
+     *
+     * @param paymentDTO the data transfer object contains payment details such as cardNumber , cvv etc.
+     * @param token   for validating the customer.
+     * @param userId   the id for which we are making payment
+     * @return  String   the response signifies the payment is successful or not .
+     */
     @PostMapping("/payment/process")
     public ResponseEntity<String> processPayment(@Valid @RequestBody PaymentDTO paymentDTO , @RequestHeader("Authorization") String token , @RequestHeader("UserId") String userId)throws Exception{
 
@@ -45,9 +55,15 @@ public class PaymentController {
 
 
 
+    /**
+     * Generating invoice for placedorder
+     * @param customerId  the id for which the order is placed.
+     * @param token        for validating the customer.
+     * @return InvoiceDTO  invoice data transfer object containg information about the quantity , price and details about the cart.
 
+     * */
 
-    @GetMapping("/payment/invoice/{customer_id}")
+   @GetMapping("/payment/invoice/{customer_id}")
     public InvoiceDTO getInvoice(@PathVariable("customer_id") UUID customerId, @RequestHeader("Authorization") String token) throws Exception
     {
         tokenValidation.isTokenValid(token ,customerId);
@@ -55,6 +71,15 @@ public class PaymentController {
     }
 
 
+
+    /**
+
+     * Generating receipt fot payment
+     * @param customerId the id by which payment is intiated.
+     * @param token   the validation of the customers.
+     * @return  ReceiptDTO as response it has the payment amount , quantity etc
+
+     */
     @GetMapping("/payment/receipt/{customer_id}")
     public ReceiptDTO getReceipt(@PathVariable("customer_id") UUID customerId, @RequestHeader("Authorization") String token) throws Exception
     {
@@ -67,18 +92,7 @@ public class PaymentController {
 
         return receiptDTO;
     }
-//    @GetMapping("/payment/receiptv2/{customerId}")
-//    public ReceiptDTO getReceipt(@PathVariable("customerId") UUID customerId, @RequestHeader("Authorization") String token) throws Exception
-//    {
-//        tokenValidation.isTokenValid(token ,customerId);
-//
-//
-//        ReceiptDTO receiptDTO = receiptService.generateReceipt(customerId);
-//
-//
-//
-//        return receiptDTO;
-//    }
+
 
 
 }
