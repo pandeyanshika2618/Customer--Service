@@ -39,7 +39,7 @@ public class CartServiceImpl implements CartService {
         if (cart == null) {
 
             cart = new Cart();
-            cart.setCustomerId(id);  // Set the customerId here
+            cart.setCustomerId(id);
             cart = cartDAO.saveCart(cart);
         }
 

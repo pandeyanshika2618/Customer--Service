@@ -10,6 +10,7 @@ import customerservice.example.customer.Service.exceptionHandler.RegisterationDu
 import customerservice.example.customer.Service.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -20,11 +21,13 @@ import java.util.UUID;
 public class CustomerServiceImpl implements CustomerService {
     private CustomerDao customerDao;
     private TokenValidation tokenValidation;
+    private PasswordEncoder passwordEncoder ;
 
     @Autowired
-    public CustomerServiceImpl(CustomerDao customerDao, TokenValidation tokenValidation) {
+    public CustomerServiceImpl(CustomerDao customerDao, TokenValidation tokenValidation , PasswordEncoder passwordEncoder) {
         this.customerDao = customerDao;
         this.tokenValidation = tokenValidation;
+        this.passwordEncoder = passwordEncoder;
     }
 
 //    @Override
@@ -90,7 +93,10 @@ public class CustomerServiceImpl implements CustomerService {
         Optional<Customer> optionalCustomer = customerDao.findByEmail(customerLoginDTO.getEmail());
         Customer customer = optionalCustomer.orElseThrow(() -> new InvalidCredentialsException("Invalid username or password"));
 
-        if (!customer.getPassword().equals(customerLoginDTO.getPassword())) {
+//        if (!customer.getPassword().equals(customerLoginDTO.getPassword())) {
+//            throw new InvalidCredentialsException("Invalid username or password");
+//        }
+        if (!passwordEncoder.matches(customerLoginDTO.getPassword(), customer.getPassword())) {
             throw new InvalidCredentialsException("Invalid username or password");
         }
 
@@ -119,6 +125,7 @@ public class CustomerServiceImpl implements CustomerService {
             throw new RegisterationDuplicacyException("This email is already in use");
         }
         Customer customer = registerDtoToEntity(customerDTO);
+        customer.setPassword(passwordEncoder.encode(customer.getPassword()));
         Customer tobeSavedCustomer = customerDao.registerCustomer(customer);
 
         return customerToResponseDTO(tobeSavedCustomer);
